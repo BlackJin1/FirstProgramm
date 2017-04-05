@@ -120,6 +120,7 @@ HANGMAN = (
 MAX_WRONG = len(HANGMAN)
 WORDS = ("OVERUSED", "CLAM", "GUAM", "TAFFETA", "PYTHON")
 
+# тест
 # Инициализация переменных
 word = random.choice(WORDS)
 so_far = "-"*len(word) # по одному дефису, на каждую букву, которую нужно отгадать
