@@ -140,6 +140,7 @@ while wrong < MAX_WRONG and so_far != word:
         guess = guess.upper()
     used.append(guess)
 
+
     if guess in word:
         print("\nДа! Буква",guess,"есть в слове!")
         new = ""
