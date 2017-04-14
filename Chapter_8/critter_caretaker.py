@@ -60,6 +60,7 @@ def main():
         choice = input("Ваш выбор: ")
         print()
 
+
         # Выход
         if choice == "0":
             print("До свидания")
