@@ -57,7 +57,7 @@ class BJ_Hand(Chapter_9.cards.Hand):
         return self.total > 21
 class BJ_Player(BJ_Hand):
     """ Игрок в Блек-Джек"""
-    def is_hiiiing(self):
+    def is_hitting(self):
         response = Chapter_9.games.ask_yes_no("\n"+self.name+", будете брать еще карты? (y/n)")
         return response == "y"
     def bust(self):
@@ -98,7 +98,7 @@ class BJ_Game(object):
                 sp.append(player)
         return sp
 
-    def __additional_cards(self,player):
+    def __additional_cards(self, player):
         while not player.is_busted() and player.is_hitting():
             self.deck.deal([player])
             print(player)
@@ -107,7 +107,7 @@ class BJ_Game(object):
 
     def play(self):
         # Сдача всем по 2 карты
-        self.deck.deal(self.players+[self.dealer], hands=2)
+        self.deck.deal(self.players+[self.dealer], per_hand=2)
         self.dealer.flip_first_card() # Первая карта из сдавших диллером переворачивается рубашкой к верху
         for player in self.players:
             print(player)
@@ -141,21 +141,19 @@ class BJ_Game(object):
             player.clear()
         self.dealer.clear()
 
-    def main(self):
-        print("\t\tДобро пожаловать за игровой стол Блек-Джек!\n")
-        names=[]
-        number = Chapter_9.games.ask_number("Сколько всего игроков в игре? (1-7)", low=1, high=8)
-        for i in range(number):
-            name = input("Введите имя игрока: ")
-            names.append(name)
-            print()
-        game = BJ_Game(names)
-        again = None
-        while again != "n":
-            game.play()
-            again = Chapter_9.games.ask_yes_no("\nХотите сыграть еще раз?")
+def main():
+    print("\t\tДобро пожаловать за игровой стол Блек-Джек!\n")
+    names=[]
+    number = Chapter_9.games.ask_number("Сколько всего игроков в игре? (1-7)", low=1, high=8)
+    for i in range(number):
+        name = input("Введите имя игрока: ")
+        names.append(name)
+        print()
+    game = BJ_Game(names)
+    again = None
+    while again != "n":
+        game.play()
+        again = Chapter_9.games.ask_yes_no("\nХотите сыграть еще раз?")
 
-game = BJ_Game()
-game.main()
-
+main()
 input("\n\n Введите Enter, чтобы выйти.")
